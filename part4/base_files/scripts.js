@@ -127,7 +127,7 @@ function displayPlaces(places) {
             <img src="images/place1.jpg" alt="Place Image" class="place-image">
             <h2>${place.title}</h2>
             <p>Price per night: $${place.price}</p>
-            <a class="details-button" href="place.html?id=${place.id}">View Details</button>
+            <a class="details-button" href="place.html?place_id=${place.id}">View Details</button>
         `;
     // Append the created element to the places list
     placesList.appendChild(placeDiv);
