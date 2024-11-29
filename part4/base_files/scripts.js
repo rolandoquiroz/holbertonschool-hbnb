@@ -104,6 +104,7 @@ async function fetchPlaces(token) {
     }
 
     const places = await response.json();
+    console.log(places);
     displayPlaces(places);
   } catch (error) {
     console.error("Fetch error: ", error);
@@ -245,10 +246,14 @@ function displayPlaceDetails(place) {
   // Create elements to display the place details (name, description, price, amenities and reviews)
   placeDetailsSection.innerHTML = `
         <h2>${place.title}</h2>
- 
+        <p><strong>Host:</strong> ${place.owner.first_name} ${place.owner.last_name}</p>
         <p><strong>Price per night:</strong> $${place.price}</p>
         <p><strong>Description:</strong> ${place.description}</p>
-        <p><strong>Amenities:</strong> ${place.amenities && Array.isArray(place.amenities) ? place.amenities.join(', ') : 'No amenities listed'}</p>
+        <p><strong>Amenities:</strong> ${place.amenities && Array.isArray(place.amenities) && place.amenities.length > 0 
+          ? place.amenities.map(amenity => amenity.name).join(', ')
+          : 'No amenities listed'}
+        </p>
+
     `;
   const placeElement = document.createElement('div');
   // Append the created elements to the place details section
